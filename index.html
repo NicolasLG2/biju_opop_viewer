@@ -43,6 +43,17 @@
       background-color: #f5f5f5;
     }
 
+    .left-logo {
+      position: fixed;
+      left: 30px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1000;
+      width: 90px;
+      height: auto;
+      pointer-events: none;
+    }
+
     .legend {
       position: fixed;
       right: 30px;
@@ -118,6 +129,8 @@
   <div class="header">
     <img src="image.png" alt="Logo">
   </div>
+
+  <img class="left-logo" src="logo.png" alt="Logo gauche">
 
   <div id="vue3d" class="viewer active">
     <model-viewer
