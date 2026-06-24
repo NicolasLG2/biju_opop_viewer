@@ -52,21 +52,15 @@
       padding: 20px;
       border-radius: 14px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-      min-width: 240px;
+      min-width: 280px;
       z-index: 1000;
       border: 1px solid rgba(0,0,0,0.08);
-    }
-
-    .legend-title {
-      font-size: 16px;
-      font-weight: 700;
-      margin-bottom: 18px;
     }
 
     .legend-item {
       display: flex;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .legend-item:last-child {
@@ -85,6 +79,7 @@
     .legend-text {
       font-size: 14px;
       color: #222;
+      line-height: 1.3;
     }
 
     .switch-container {
@@ -148,54 +143,75 @@
     </model-viewer>
   </div>
 
-  <div class="legend">    
+  <div id="modele3" class="viewer">
+    <model-viewer
+      src="model3.glb"
+      camera-controls
+      auto-rotate
+      camera-orbit="-35deg 75deg auto"
+      shadow-intensity="1"
+      exposure="1"
+      alt="Modèle 3">
+    </model-viewer>
+  </div>
+
+  <div id="modele4" class="viewer">
+    <model-viewer
+      src="model4.glb"
+      camera-controls
+      auto-rotate
+      camera-orbit="-35deg 75deg auto"
+      shadow-intensity="1"
+      exposure="1"
+      alt="Modèle 4">
+    </model-viewer>
+  </div>
+
+  <div class="legend">
     <div class="legend-item">
-      <div class="legend-color" style="background:#A6BFE2FF;"></div>
-      <div class="legend-text">Coque arrière</div>
-    </div>
-    
-    <div class="legend-item">
-      <div class="legend-color" style="background:#5E68E2FF;"></div>
-      <div class="legend-text">Coque avant</div>
+      <div class="legend-color" style="background:#111111;"></div>
+      <div class="legend-text">Tige métallique<br>acier ou aluminium</div>
     </div>
 
     <div class="legend-item">
-      <div class="legend-color" style="background:#171AA1FF;"></div>
-      <div class="legend-text">Chapeau</div>
-    </div>
-
-    <div class="legend-item">
-      <div class="legend-color" style="background:#107400FF;"></div>
-      <div class="legend-text">Carte électronique (PCB)</div>
+      <div class="legend-color" style="background:#9B9B9B;"></div>
+      <div class="legend-text">Plastique TPE / TPU<br>silicone biodégradable</div>
     </div>
   </div>
 
   <div class="switch-container">
-    <button id="btnVue3d" class="active" onclick="showViewer('vue3d')">
+    <button id="btnVue3d" class="active" onclick="showViewer('vue3d', 'btnVue3d')">
       Vue 3D
     </button>
 
-    <button id="btnExplose" onclick="showViewer('vue3dExplose')">
+    <button id="btnExplose" onclick="showViewer('vue3dExplose', 'btnExplose')">
       Vue 3D explosée
+    </button>
+
+    <button id="btnModele3" onclick="showViewer('modele3', 'btnModele3')">
+      Modèle 3
+    </button>
+
+    <button id="btnModele4" onclick="showViewer('modele4', 'btnModele4')">
+      Modèle 4
     </button>
   </div>
 
   <script>
-    function showViewer(view) {
+    function showViewer(viewId, buttonId) {
+      const viewers = document.querySelectorAll('.viewer');
+      const buttons = document.querySelectorAll('.switch-container button');
 
-      document.getElementById('vue3d').classList.remove('active');
-      document.getElementById('vue3dExplose').classList.remove('active');
+      viewers.forEach(viewer => {
+        viewer.classList.remove('active');
+      });
 
-      document.getElementById('btnVue3d').classList.remove('active');
-      document.getElementById('btnExplose').classList.remove('active');
+      buttons.forEach(button => {
+        button.classList.remove('active');
+      });
 
-      if (view === 'vue3d') {
-        document.getElementById('vue3d').classList.add('active');
-        document.getElementById('btnVue3d').classList.add('active');
-      } else {
-        document.getElementById('vue3dExplose').classList.add('active');
-        document.getElementById('btnExplose').classList.add('active');
-      }
+      document.getElementById(viewId).classList.add('active');
+      document.getElementById(buttonId).classList.add('active');
     }
   </script>
 
